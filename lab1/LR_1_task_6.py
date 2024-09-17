@@ -9,7 +9,7 @@ from utilities import visualize_classifier
 # Завантажимо дані
 data = pd.read_csv(
     "data_multivar_nb.txt", sep=","
-)  # Замість ',' вкажіть коректний роздільник
+) 
 X = data.iloc[:, :-1].values  # Ознаки
 y = data.iloc[:, -1].values  # Цільові значення
 
