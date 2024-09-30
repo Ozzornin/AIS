@@ -2,7 +2,7 @@ import numpy as np
 from sklearn import preprocessing
 from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.multiclass import OneVsOneClassifier
-from sklearn.svm import LinearSVC
+from sklearn.svm import SVC
 
 input_file = "income_data.txt"
 
@@ -42,15 +42,17 @@ for i, item in enumerate(X[0]):
 X = X_encoded[:, :-1].astype(int)
 y = X_encoded[:, -1].astype(int)
 
-classifier = OneVsOneClassifier(LinearSVC(random_state=0))
+
+classifier = OneVsOneClassifier(SVC(kernel="sigmoid"))
 
 classifier.fit(X, y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
-classifier = OneVsOneClassifier(LinearSVC(random_state=0))
+classifier = OneVsOneClassifier(SVC(kernel="sigmoid"))
+print("before fit")
 classifier.fit(X_train, y_train)
 y_test_pred = classifier.predict(X_test)
-
+print("after fit")
 cv = 3
 accuracy_values = cross_val_score(classifier, X, y, scoring="accuracy", cv=cv)
 print("Accuracy: " + str(round(100 * accuracy_values.mean(), 2)) + "%")
