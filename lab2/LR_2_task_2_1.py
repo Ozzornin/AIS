@@ -10,7 +10,7 @@ X = []
 y = []
 count_class1 = 0
 count_class2 = 0
-max_datapoints = 5000
+max_datapoints = 25000
 
 with open(input_file, "r") as f:
     for line in f.readlines():
